@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails7New</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 link-secondary active">Home</a></li>
+          <li><a href="/articles" class="nav-link px-2 link-dark">Articles</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+          <% if current_user %>
+            <%= current_user.email %>
+          <% end %>
+        </ul>
+
+        <div class="col-md-3 text-end">
+          <% if user_signed_in? %>
+            <%= button_to("Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary me-2") %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-primary me-2" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </header>
+    </div>
+    <div class="container">    
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Rails 7 New System with Devise Bootstrap 5 PostgreSQL</h1>
+          </div>
+          </div>
+    <%= yield %>
+  </body>
+</html>
